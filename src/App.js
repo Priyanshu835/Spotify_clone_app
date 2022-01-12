@@ -26,8 +26,22 @@ const [{user,token},dispatch]=useDataLayerValue();
         dispatch({
           type: 'SET_USER',
           user: user,
+        });
+      });
+      
+      spotify.getUserPlaylists().then((playlists) =>{
+        dispatch({
+          type:"SET_PLAYLISTS",
+          playlists:playlists,
+        });
+      });
+      spotify.getPlaylist().then(response => 
+        dispatch({
+          type:"SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+          
         })
-      })
+        );
     }
   },[]);
 
